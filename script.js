@@ -1,5 +1,5 @@
 // 画像選択の処理
-function selectRoom(roomId, imgElement) {
+function select_room(roomId, imgElement) {
     // 全ての画像から選択状態を解除
     document.querySelectorAll('.room-image').forEach(img => {
         img.classList.remove('selected');
@@ -13,7 +13,7 @@ function selectRoom(roomId, imgElement) {
 }
 
 // フォーム送信の処理
-function handleSubmit(event) {
+function handle_submit(event) {
     event.preventDefault();
 
     // フォームデータの取得
@@ -23,16 +23,16 @@ function handleSubmit(event) {
     const reserverName = document.getElementById('reserverName').value;
 
     // バリデーション
-    if (!validateDateTime(startDateTime, endDateTime)) {
+    if (!validate_date_time(startDateTime, endDateTime)) {
         alert('予約時間が無効です。開始時間は終了時間より前である必要があります。');
         return;
     }
 
     // CSVデータの作成
-    const csvData = createCsvData(room, startDateTime, endDateTime, reserverName);
+    const csvData = create_csv_data(room, startDateTime, endDateTime, reserverName);
 
     // CSVファイルのダウンロード
-    downloadCsv(csvData);
+    download_csv(csvData);
 
     // フォームのリセット
     event.target.reset();
@@ -42,21 +42,21 @@ function handleSubmit(event) {
 }
 
 // 日時のバリデーション
-function validateDateTime(start, end) {
+function validate_date_time(start, end) {
     const startDate = new Date(start);
     const endDate = new Date(end);
     return startDate < endDate;
 }
 
 // CSVデータの作成
-function createCsvData(room, start, end, reserver) {
+function create_csv_data(room, start, end, reserver) {
     const header = "会議室,開始日時,終了日時,予約者\n";
     const row = `${room},${start},${end},${reserver}\n`;
     return header + row;
 }
 
 // CSVファイルのダウンロード
-function downloadCsv(csvData) {
+function download_csv(csvData) {
     const blob = new Blob([csvData], { type: 'text/csv' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');

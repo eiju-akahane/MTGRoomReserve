@@ -16,7 +16,7 @@
                      alt="会議室A"
                      class="room-image"
                      data-room="A"
-                     onclick="selectRoom('A', this)">
+                     onclick="select_room('A', this)">
                 <p>会議室A</p>
             </div>
             <div class="room-image-container">
@@ -24,12 +24,12 @@
                      alt="会議室B"
                      class="room-image"
                      data-room="B"
-                     onclick="selectRoom('B', this)">
+                     onclick="select_room('B', this)">
                 <p>会議室B</p>
             </div>
         </div>
 
-        <form id="reservationForm" onsubmit="handleSubmit(event)">
+        <form id="reservationForm" onsubmit="handle_submit(event)">
             <div class="form-group">
                 <label for="room">会議室:</label>
                 <select id="room" name="room" required>
